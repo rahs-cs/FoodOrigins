@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public float speed = 1;
+    public bool debug = false;
     Animator aninmator;
 
     // Start is called before the first frame update
@@ -15,15 +16,18 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         float horiz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
-        Debug.Log(string.Format("x:{0} y:{1}", horiz, vert));
 
         Vector2 control = new Vector2(horiz, vert);
         float angle = Vector2.SignedAngle(Vector2.up, control);
-        if(control.magnitude > 1) {
-            control.Normalize();
-        }
-
         float magnitude = Vector2.ClampMagnitude(control, 1f).magnitude;
+
+        // if (control.magnitude > 1) {
+        //     control.Normalize();
+        // }
+
+        if (debug) {
+            Debug.Log(string.Format("x:{0} y:{1}, deg:{2} mag:{3}", horiz, vert, angle, magnitude));
+        }
 
         if (aninmator != null) {
             aninmator.SetFloat("MoveSpeed", magnitude);
