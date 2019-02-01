@@ -16,7 +16,9 @@ public class WallCollider : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision collision) {
-        isColliding = true;
+        if (!isColliding) {
+            isColliding = true;
+        }
         Debug.Log(collision);
     }
 
@@ -27,7 +29,9 @@ public class WallCollider : MonoBehaviour {
     }
 
     private void OnCollisionExit(Collision collision) {
-        isColliding = false;
+        if (isColliding) {
+            isColliding = false;
+        }
         Debug.Log(collision);
     }
 }
