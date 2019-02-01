@@ -39,4 +39,9 @@ public class PlayerController : MonoBehaviour {
             transform.Translate(movement * speed);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }
