@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
     public float speed = 1;
     public bool debug = false;
     Animator aninmator;
