@@ -6,16 +6,22 @@ public class PlayerMovement : MonoBehaviour {
     public float speed = 1;
     public bool debug = false;
     Animator aninmator;
+    WallCollider wall;
 
     // Start is called before the first frame update
     void Start() {
         aninmator = GetComponent<Animator>();
+        wall = GetComponent<WallCollider>();
     }
 
     // Update is called once per frame
     void Update() {
         float horiz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
+
+        if (wall.collision != null) {
+            Debug.Log(wall.collision);
+        }
 
         Vector2 control = new Vector2(horiz, vert);
         float angle = Vector2.SignedAngle(Vector2.up, control);

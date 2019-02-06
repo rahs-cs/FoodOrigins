@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WallCollider : MonoBehaviour {
-    public bool isColliding = false;
+    public Collision collision;
 
     // Start is called before the first frame update
     void Start() {
@@ -15,23 +15,18 @@ public class WallCollider : MonoBehaviour {
         
     }
 
-    void OnCollisionEnter(Collision collision) {
-        if (!isColliding) {
-            isColliding = true;
-        }
-        Debug.Log(collision);
+    void OnCollisionEnter(Collision newCollision) {
+        collision = newCollision;
     }
 
-    private void OnCollisionStay(Collision collision) {
-        foreach (ContactPoint contact in collision.contacts) {
+    private void OnCollisionStay(Collision newCollision) {
+        collision = newCollision;
+        foreach (ContactPoint contact in newCollision.contacts) {
             Debug.DrawRay(contact.point, contact.normal * 10, Color.yellow);
         }
     }
 
-    private void OnCollisionExit(Collision collision) {
-        if (isColliding) {
-            isColliding = false;
-        }
-        Debug.Log(collision);
+    private void OnCollisionExit() {
+        collision = null;
     }
 }
