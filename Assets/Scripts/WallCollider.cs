@@ -12,7 +12,10 @@ public class WallCollider : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        if (collision != null)
+        {
+            Debug.Log(collision.gameObject.name);
+        }
     }
 
     void OnCollisionEnter(Collision newCollision) {
