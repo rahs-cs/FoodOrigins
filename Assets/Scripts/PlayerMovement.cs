@@ -45,9 +45,4 @@ public class PlayerMovement : MonoBehaviour {
             transform.Translate(movement * speed);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
 }
