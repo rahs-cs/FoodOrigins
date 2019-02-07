@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (control.magnitude > 0) {
-            Vector3 wallHit = new Vector3(-collisionAveragePoint.x, 0, -collisionAveragePoint.y) * speed;
+            Vector3 wallHit = new Vector3(collisionAveragePoint.x, 0, collisionAveragePoint.y) * speed;
             Vector3 movement = new Vector3(0, 0, control.magnitude);
             transform.eulerAngles = new Vector3(0, -angle, 0);
             transform.Translate((movement * speed) - (wallHit * 2));
