@@ -19,11 +19,17 @@ public class PlayerMovement : MonoBehaviour {
         float horiz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
 
+        Vector2 control = new Vector2(horiz, vert);
+
         if (wall.collision != null) {
-            Debug.Log(wall.collision);
+            foreach (ContactPoint contact in wall.collision.contacts) {
+                Vector2 contact2 = new Vector2(contact.point.x, contact.point.z);
+                contact2 = Vector2.ClampMagnitude(contact2, 1f);
+
+                control = control - contact2;
+            }
         }
 
-        Vector2 control = new Vector2(horiz, vert);
         float angle = Vector2.SignedAngle(Vector2.up, control);
         float magnitude = Vector2.ClampMagnitude(control, 1f).magnitude;
 
